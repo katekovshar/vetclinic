@@ -32,9 +32,7 @@ public class ContactInfoDao {
 
 	public void addNewContactInfo(String email, String phone) {
 		ContactInfo contactInfo = new ContactInfo(email, phone);
-		entityManager.getTransaction().begin();
 		entityManager.persist(contactInfo);
-		entityManager.getTransaction().commit();
 	}
 
 }

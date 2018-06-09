@@ -31,9 +31,7 @@ public class PetDao {
 	}
 
 	public void addNewPet(Pet pet, long ownerId) {
-		entityManager.getTransaction().begin();
 		entityManager.persist(pet);
-		entityManager.getTransaction().commit();
 	}
 
 }
