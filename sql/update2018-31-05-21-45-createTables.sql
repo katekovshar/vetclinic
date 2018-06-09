@@ -62,3 +62,11 @@ create table nurse (
 	gender enum('MALE', 'FEMALE'),
 	contact_info_id BIGINT
 );
+
+create table administrator (
+	login varchar(255),
+	password varchar(255),
+	username varchar(255),
+	gender enum('MALE', 'FEMALE'),
+	contact_info_id BIGINT
+);
