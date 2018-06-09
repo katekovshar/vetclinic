@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<class name="com.ipz.vetclinic.data.Nurse" table="nurse">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="login" type="string" />
+		<property name="password" type="string" />
+		<property name="username" type="string" />
+		<property name="gender" not-null="false" type="genderTypeDict"/>
+		<many-to-one name="contactInfo" column="contact_info_id" class="com.ipz.vetclinic.data.ContactInfo" not-null="true" />
+		<bag name="tasks" cascade="all-delete-orphan" >
+			<key column="nurse_id" />
+			<one-to-many class="com.ipz.vetclinic.data.Task" />
+		</bag>
+	</class>
+</hibernate-mapping>

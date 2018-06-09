@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<class name="com.ipz.vetclinic.data.Procedure" table="procedure">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="title" type="string" />
+		<property name="description" type="string" />
+		<property name="duration" type="double" />
+		<property name="date" type="date" />
+		<many-to-one name="doctor" column="doctor_id" class="com.ipz.vetclinic.data.Doctor" not-null="true" />
+	</class>
+</hibernate-mapping>

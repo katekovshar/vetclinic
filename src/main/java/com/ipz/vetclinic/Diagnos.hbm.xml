@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<class name="com.ipz.vetclinic.data.Diagnos" table="diagnos">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="title" type="string" />
+		<property name="desciption" type="string" />
+		<bag name="procedureList" cascade="all-delete-orphan" >
+			<key column="diagnos_id" />
+			<one-to-many class="com.ipz.vetclinic.data.Procedure" />
+		</bag>
+	</class>
+</hibernate-mapping>

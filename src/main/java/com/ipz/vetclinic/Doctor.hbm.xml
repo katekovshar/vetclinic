@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<typedef name="kindTypeDict" class="org.hibernate.type.EnumType">
+		<param name="enumClass">com.ipz.vetclinic.dict.Kind</param>
+		<param name="useNamed">true</param>
+	</typedef>
+	<typedef name="genderTypeDict" class="org.hibernate.type.EnumType">
+		<param name="enumClass">com.ipz.vetclinic.dict.Gender</param>
+		<param name="useNamed">true</param>
+	</typedef>
+
+	<class name="com.ipz.vetclinic.data.Doctor" table="doctor">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="login" type="string" />
+		<property name="password" type="string" />
+		<property name="username" type="string" />
+		<property name="gender" not-null="false" type="genderTypeDict"/>
+		<many-to-one name="contactInfo" column="contact_info_id" class="com.ipz.vetclinic.data.ContactInfo" not-null="true" />
+		<bag name="kindsSpecialisation" cascade="all-delete-orphan" table="kinds_specialisation">
+			<key column="doctor_id" />
+			<element column="kind" type="kindTypeDict"/>
+		</bag>
+	</class>
+</hibernate-mapping>

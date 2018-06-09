@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<typedef name="taskStatusTypeDict" class="org.hibernate.type.EnumType">
+		<param name="enumClass">com.ipz.vetclinic.dict.TaskStatus</param>
+		<param name="useNamed">true</param>
+	</typedef>
+
+	<class name="com.ipz.vetclinic.data.Task" table="task">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="taskStatus" type="taskStatusTypeDict" />
+		<property name="date" type="date" />
+		<many-to-one name="responsible" column="doctor_id" class="com.ipz.vetclinic.data.Doctor" not-null="true" />
+		<many-to-one name="pet" column="pet_id" class="com.ipz.vetclinic.data.Pet" not-null="true" />
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ipz.vetclinic">
+
+	<class name="com.ipz.vetclinic.data.Pet" table="pet">
+		<id name="id" type="long" unsaved-value="-1">
+			<generator class="native"/>
+		</id>
+
+		<property name="name" type="string" />
+		<property name="age" type="int" />
+		<property name="kind" type="kindTypeDict"/>
+		<property name="gender" type="genderTypeDict"/>
+		<property name="weight" type="int" />
+		<many-to-one name="owner" column="owner_id" class="com.ipz.vetclinic.data.Customer" not-null="true" />
+		<set name="diseaseHistory" cascade="delete-orphan">
+			<key column="pet_id" not-null="true"/>
+			<one-to-many class="com.ipz.vetclinic.data.Diagnos" />
+		</set>
+
+	</class>
+</hibernate-mapping>
